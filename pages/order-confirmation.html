@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Lavish Things</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="../index.html">
+                    <img src="../images/Logo/logo.png" alt="Lavish Things" class="h-12">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 pt-24 pb-20 max-w-2xl">
+        <div class="bg-white rounded-xl p-6 shadow-sm text-center">
+            <div class="mb-6">
+                <i class="fas fa-check-circle text-green-500 text-5xl"></i>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-900 mb-2">Order Confirmed!</h1>
+            <p class="text-gray-600 mb-6">Thank you for your purchase</p>
+            
+            <div class="border-t border-gray-100 pt-6 mb-6">
+                <div class="text-left mb-4">
+                    <p class="text-sm text-gray-600">Order ID</p>
+                    <p class="font-medium" id="orderId"></p>
+                </div>
+                <div class="text-left">
+                    <p class="text-sm text-gray-600">Estimated Delivery</p>
+                    <p class="font-medium" id="estimatedDelivery"></p>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <a href="../index.html" 
+                   class="block w-full bg-blue-600 text-white py-3 rounded-full font-semibold hover:bg-blue-700 transition">
+                    Continue Shopping
+                </a>
+                <a href="orders.html" 
+                   class="block w-full bg-gray-100 text-gray-700 py-3 rounded-full font-semibold hover:bg-gray-200 transition">
+                    View Order
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get order ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+            
+            // Display order details
+            document.getElementById('orderId').textContent = orderId;
+            
+            // Calculate estimated delivery (3-5 business days from now)
+            const deliveryDate = new Date();
+            deliveryDate.setDate(deliveryDate.getDate() + 5);
+            document.getElementById('estimatedDelivery').textContent = 
+                deliveryDate.toLocaleDateString('en-US', { 
+                    weekday: 'long',
+                    month: 'long',
+                    day: 'numeric'
+                });
+        });
+    </script>
+</body>
+</html> 

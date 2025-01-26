@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Lavish Things</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="../index.html" class="mr-4">
+                        <i class="fas fa-arrow-left text-xl text-gray-700"></i>
+                    </a>
+                    <h1 class="text-xl font-semibold">Notifications</h1>
+                </div>
+                <button onclick="clearAllNotifications()" class="text-blue-600 text-sm">
+                    Clear All
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 pt-20 pb-20 max-w-2xl">
+        <!-- Notification filters -->
+        <div class="flex gap-2 mb-6 overflow-x-auto pb-2">
+            <button onclick="filterNotifications('all')" 
+                    class="filter-btn active px-4 py-2 rounded-full bg-blue-600 text-white whitespace-nowrap">
+                All
+            </button>
+            <button onclick="filterNotifications('order')" 
+                    class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 whitespace-nowrap">
+                Orders
+            </button>
+            <button onclick="filterNotifications('promotion')" 
+                    class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 whitespace-nowrap">
+                Promotions
+            </button>
+            <button onclick="filterNotifications('account')" 
+                    class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 whitespace-nowrap">
+                Account
+            </button>
+        </div>
+
+        <!-- Notifications list -->
+        <div id="notificationsList" class="space-y-4">
+            <!-- Notifications will be inserted here -->
+        </div>
+
+        <!-- Empty state -->
+        <div id="emptyState" class="hidden text-center py-12">
+            <i class="far fa-bell text-gray-300 text-5xl mb-4"></i>
+            <p class="text-gray-500">No notifications yet</p>
+        </div>
+    </main>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/notifications.js"></script>
+</body>
+</html> 

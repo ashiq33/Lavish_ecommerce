@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavish Things - Shopping App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+</head>
+<body class="bg-gray-50">
+    <!-- Sidebar -->
+    <div id="sidebar" 
+         class="fixed top-0 left-0 h-full w-72 bg-white/80 backdrop-blur-md shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-50">
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-10">
+                <img src="images/Logo/logo.png" alt="Lavish Things" class="h-12">
+                <button onclick="toggleSidebar()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <nav class="space-y-6">
+                <a href="pages/categories/men.html" 
+                   class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                    <i class="fas fa-male text-xl w-8"></i>
+                    Men
+                </a>
+                <a href="pages/categories/women.html" 
+                   class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                    <i class="fas fa-female text-xl w-8"></i>
+                    Women
+                </a>
+                <a href="pages/categories/kids.html" 
+                   class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                    <i class="fas fa-child text-xl w-8"></i>
+                    Kids
+                </a>
+                <a href="pages/categories/shoes.html" 
+                   class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                    <i class="fas fa-shoe-prints text-xl w-8"></i>
+                    Shoes
+                </a>
+                <a href="pages/categories/accessories.html" 
+                   class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                    <i class="fas fa-glasses text-xl w-8"></i>
+                    Accessories
+                </a>
+                <div class="border-t border-gray-200 my-4"></div>
+                <a href="pages/orders.html" 
+                   class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                    <i class="fas fa-box text-xl w-8"></i>
+                    My Orders
+                </a>
+                <a href="pages/profile.html" 
+                   class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                    <i class="fas fa-user text-xl w-8"></i>
+                    Profile
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div id="sidebarOverlay" 
+         class="fixed inset-0 bg-black/30 backdrop-blur-sm hidden lg:hidden" 
+         onclick="toggleSidebar()">
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-6">
+                    <button onclick="toggleSidebar()" class="lg:hidden">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <a href="index.html">
+                        <img src="images/Logo/logo.png" alt="Lavish Things" class="h-[125px] w-auto">
+                    </a>
+                </div>
+                
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="pages/categories/men.html" class="text-gray-700 hover:text-blue-600">Men</a>
+                    <a href="pages/categories/women.html" class="text-gray-700 hover:text-blue-600">Women</a>
+                    <a href="pages/categories/kids.html" class="text-gray-700 hover:text-blue-600">Kids</a>
+                    <a href="pages/categories/shoes.html" class="text-gray-700 hover:text-blue-600">Shoes</a>
+                    <a href="pages/categories/accessories.html" class="text-gray-700 hover:text-blue-600">Accessories</a>
+                    
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="relative hidden md:block">
+                        <input type="text" 
+                               id="searchInput"
+                               placeholder="Search products..."
+                               oninput="handleSearch(event)"
+                               class="w-64 px-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <i class="fas fa-search absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                    
+                    <div class="flex items-center gap-3">
+                        <a href="pages/cart.html" class="relative">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                            <span class="absolute -top-2 -right-2 bg-blue-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                        </a>
+                        <a href="pages/favorites.html" class="relative">
+                            <i class="far fa-heart text-xl"></i>
+                            <span class="absolute -top-2 -right-2 bg-blue-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                        </a>
+                        <a href="pages/profile.html" class="hidden md:flex items-center gap-2 hover:text-blue-600">
+                            <i class="far fa-user text-xl"></i>
+                            <span class="text-sm font-medium">Profile</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container pb-24 md:pb-20">
+        <!-- Hero Slider Section -->
+        <section class="mb-8">
+            <div class="swiper heroSwiper rounded-2xl overflow-hidden">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide relative">
+                        <img src="images/Banner/b1.jpg" alt="Hero Banner" class="w-full h-[400px] object-cover">
+                        
+                        
+                        <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent flex items-center">
+                            <div class="text-white px-8">
+                                <h2 class="text-4xl font-bold mb-4">Summer Collection 2024</h2>
+                                <p class="text-lg mb-6 max-w-md">Discover the latest trends and styles for your wardrobe</p>
+                                <button class="bg-white text-black px-8 py-3 rounded-full hover:bg-gray-100 transition">
+                                    Shop Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide relative">
+                        <img src="images/Banner/b2.jpg" alt="Hero Banner" class="w-full h-[400px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent flex items-center">
+                            <div class="text-white px-8">
+                                <h2 class="text-4xl font-bold mb-4">New Arrivals</h2>
+                                <p class="text-lg mb-6 max-w-md">Check out our latest collection of Lavish Things</p>
+                                <button class="bg-white text-black px-8 py-3 rounded-full hover:bg-gray-100 transition">
+                                    Shop Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide relative">
+                        <img src="images/Banner/b3.jpg" alt="Hero Banner" class="w-full h-[400px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent flex items-center">
+                            <div class="text-white px-8">
+                                <h2 class="text-4xl font-bold mb-4">Special Offers</h2>
+                                <p class="text-lg mb-6 max-w-md">Get up to 30% off on selected items</p>
+                                <button class="bg-white text-black px-8 py-3 rounded-full hover:bg-gray-100 transition">
+                                    Shop Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next text-white"></div>
+                <div class="swiper-button-prev text-white"></div>
+            </div>
+        </section>
+
+      
+
+        <!-- This Week's Highlight -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">This Week's Highlight</h2>
+                <a href="pages/view-all.html?section=highlights" class="text-blue-600 hover:underline">View All</a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="highlightProducts">
+                <!-- Products will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- New Arrivals -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">New Arrivals</h2>
+                <a href="pages/view-all.html?section=new-arrivals" class="text-blue-600 hover:underline">View All</a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="newArrivals">
+                <!-- Products will be inserted here by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden z-40">
+        <div class="flex items-center justify-around py-3 bg-[#8B4513] text-white">
+            <a href="index.html" class="flex flex-col items-center">
+                <i class="fas fa-home text-xl text-white"></i>
+                <span class="text-xs mt-1">Home</span>
+            </a>
+            <a href="pages/category.html" class="flex flex-col items-center">
+                <i class="fas fa-th-large text-xl text-white"></i>
+                <span class="text-xs mt-1">Categories</span>
+            </a>
+            <a href="pages/cart.html" class="flex flex-col items-center">
+                <i class="fas fa-shopping-cart text-xl text-white"></i>
+                <span class="text-xs mt-1">Cart</span>
+            </a>
+            <a href="pages/favorites.html" class="flex flex-col items-center">
+                <i class="far fa-heart text-xl text-white"></i>
+                <span class="text-xs mt-1">Favorites</span>
+            </a>
+            <a href="pages/profile.html" class="flex flex-col items-center">
+                <i class="far fa-user text-xl text-white"></i>
+                <span class="text-xs mt-1">Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Footer (visible only on larger screens) -->
+    <footer class="hidden md:block fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-4 text-center z-40">
+        <div class="container mx-auto px-4">
+            <p class="text-gray-600">
+                © <span id="currentYear"></span> All Rights Reserved by Md Ashiq Shahariar
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script>
+        // Initialize counts when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+            updateFavoriteCount();
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+
+        // Initialize Swiper
+        new Swiper(".heroSwiper", {
+            loop: true,
+            speed: 1000,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+        });
+
+        // Close search results when clicking outside
+        document.addEventListener('click', handleClickOutside);
+        
+        // Initialize search functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                // Add data-product-id to product cards for scrolling
+                document.querySelectorAll('.product-card').forEach(card => {
+                    const productId = card.querySelector('[onclick]')
+                        .getAttribute('onclick')
+                        .match(/\d+/)[0];
+                    card.setAttribute('data-product-id', productId);
+                });
+            }
+        });
+
+        // Sidebar functionality
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            const isSidebarOpen = !sidebar.classList.contains('-translate-x-full');
+            
+            if (isSidebarOpen) {
+                // Close sidebar
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+                document.body.style.overflow = ''; // Restore scrolling
+            } else {
+                // Open sidebar
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+        }
+    </script>
+
+    <!-- Add this style to your existing styles -->
+    <style>
+        .highlight-product {
+            animation: highlight-fade 2s ease-out;
+        }
+        
+        @keyframes highlight-fade {
+            0% { background-color: rgba(59, 130, 246, 0.1); }
+            100% { background-color: transparent; }
+        }
+        
+        #searchResults {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+        }
+        
+        #searchResults::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        #searchResults::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        #searchResults::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 163, 175, 0.5);
+            border-radius: 3px;
+        }
+
+        .product-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        #productModal {
+            animation: modalFade 0.3s ease-out;
+        }
+        
+        @keyframes modalFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <!-- Product Card Template -->
+    <template id="productTemplate">
+        <div class="product-card bg-white rounded-xl shadow-sm overflow-hidden group hover:shadow-md transition">
+            <!-- ... other HTML ... -->
+            <div class="p-4">
+                <h3 class="font-medium text-gray-900">{name}</h3>
+                <p class="text-sm text-gray-500">{category}</p>
+                <div class="flex items-center justify-between mt-4">
+                    <span class="font-bold text-blue-600">৳{price}</span>
+                    <button onclick="addToCart({id})" 
+                            class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm hover:bg-blue-700 transition">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+</body>
+</html> 

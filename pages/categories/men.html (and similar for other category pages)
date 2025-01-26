@@ -1,0 +1,16 @@
+<div class="product-template hidden">
+    <div class="bg-white rounded-xl shadow-sm overflow-hidden group hover:shadow-md transition">
+        <!-- ... other HTML ... -->
+        <div class="p-4">
+            <h3 class="font-medium text-gray-900">{name}</h3>
+            <p class="text-sm text-gray-500">{category}</p>
+            <div class="flex items-center justify-between mt-4">
+                <span class="font-bold text-blue-600">৳{price}</span>
+                <button onclick="addToCart({id})" 
+                        class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm hover:bg-blue-700 transition">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+</div> 

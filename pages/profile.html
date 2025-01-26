@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Lavish Things</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="text-gray-700">
+                    <i class="fas fa-arrow-left text-xl"></i>
+                </a>
+                <h1 class="text-xl font-semibold flex-1 text-center">Profile</h1>
+                <button onclick="toggleEditMode()" id="editProfileBtn" class="text-blue-600">Edit</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 pt-20 pb-20 max-w-2xl">
+        <!-- Profile Info -->
+        <div class="bg-white rounded-xl p-6 mb-6 shadow-sm">
+            <div class="flex items-center mb-6">
+                <div class="relative">
+                    <img id="profileImage" src="https://via.placeholder.com/100" 
+                         alt="Profile" 
+                         class="w-24 h-24 rounded-full object-cover">
+                    <label for="imageUpload" class="absolute bottom-0 right-0 bg-blue-600 text-white rounded-full p-2 cursor-pointer">
+                        <i class="fas fa-camera"></i>
+                        <input type="file" id="imageUpload" class="hidden" accept="image/*">
+                    </label>
+                </div>
+                <div class="ml-6">
+                    <h2 id="profileName" class="text-xl font-semibold">John Doe</h2>
+                    <p id="profileEmail" class="text-gray-600">john.doe@example.com</p>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <a href="orders.html" class="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100">
+                    <div class="flex items-center">
+                        <i class="fas fa-shopping-bag text-gray-400 w-6"></i>
+                        <span class="ml-3">My Orders</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </a>
+                <a href="favorites.html" class="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100">
+                    <div class="flex items-center">
+                        <i class="fas fa-heart text-gray-400 w-6"></i>
+                        <span class="ml-3">Favorites</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </a>
+                <a href="shipping-addresses.html" class="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100">
+                    <div class="flex items-center">
+                        <i class="fas fa-map-marker-alt text-gray-400 w-6"></i>
+                        <span class="ml-3">Shipping Addresses</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </a>
+                <a href="payment-methods.html" class="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100">
+                    <div class="flex items-center">
+                        <i class="fas fa-credit-card text-gray-400 w-6"></i>
+                        <span class="ml-3">Payment Methods</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Settings -->
+        <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h3 class="text-lg font-semibold mb-4">Settings</h3>
+            <div class="space-y-4">
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                    <div class="flex items-center">
+                        <i class="fas fa-bell text-gray-400 w-6"></i>
+                        <span class="ml-3">Notifications</span>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="notificationsToggle" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                </div>
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                    <div class="flex items-center">
+                        <i class="fas fa-moon text-gray-400 w-6"></i>
+                        <span class="ml-3">Dark Mode</span>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="darkModeToggle" class="sr-only peer">
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="logout()" 
+                class="w-full bg-red-500 text-white py-3 rounded-xl font-semibold hover:bg-red-600 transition mt-6">
+            Log Out
+        </button>
+    </main>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/profile.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        // Check authentication before loading profile
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!requireAuth()) return;
+            initProfile();
+        });
+    </script>
+</body>
+</html> 
