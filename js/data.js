@@ -29,7 +29,7 @@ const products = [
         id: 3,
         name: "Villa Dress",
         price: 1350,
-        image: "../images/Women/img2.jpg",
+        image: "../Images/Women/img2.jpg",
         category: "Women",
         description: "Elegant villa design perfect for special occasions"
     },
@@ -37,7 +37,7 @@ const products = [
         id: 4,
         name: "Kids Denim Jacket",
         price: 1250,
-        image: "../images/Kids/img1.jpg",
+        image: "../Images/Kids/img1.jpg",
         category: "Kids",
         description: "Stylish denim jacket for kids"
     },
@@ -45,7 +45,7 @@ const products = [
         id: 5,
         name: "Running Shoes",
         price: 1299,
-        image: "../images/Shoes/img1.jpg",
+        image: "../Images/Shoes/img1.jpg",
         category: "Shoes",
         description: "Comfortable running shoes with great support"
     },
@@ -53,7 +53,7 @@ const products = [
         id: 6,
         name: "Leather Watch",
         price: 699,
-        image: "../images/Watch/img1.jpg",
+        image: "../Images/Watch/img1.jpg",
         category: "Accessories",
         description: "Classic leather watch with modern features"
     },
@@ -61,7 +61,7 @@ const products = [
         id: 7,
         name: "Summer Dress",
         price: 990,
-        image: "../images/Women/img3.jpg",
+        image: "../Images/Women/img3.jpg",
         category: "Women",
         isHighlight: true,
         description: "Light and breezy summer dress perfect for warm days"
@@ -70,7 +70,7 @@ const products = [
         id: 8,
         name: "Smart Watch",
         price: 1290,
-        image: "../images/Watch/img2.jpg",
+        image: "../Images/Watch/img2.jpg",
         category: "Accessories",
         isNewArrival: true,
         description: "Latest smartwatch with health tracking features"
